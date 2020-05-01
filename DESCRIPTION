@@ -1,4 +1,4 @@
-Package: QFA2wip
+Package: baQFA
 Type: Package
 Title: Quantitative Fitness Analysis Version 2 
 Version: 0.1.0
@@ -7,7 +7,7 @@ Author: Authors@R: as.person(c(
     "Conor Lawless <conor.lawless@ncl.ac.uk> [aut]"
   ))
 Maintainer: Julian Baer <julian.baer@usz.ch>
-Description: QFA2 is created for analysis of Colonyzer_v4 output data or growth curve output data from plate readers in time format.
+Description: baQFA is created for analysis of baColonyzer output data or growth curve output data from plate readers in time format.
     It includes several functions to import and convert data, fit Gompertz, standard and generalized logistic models, calculate fitness
     and plotting the growth curves as well as fitness values.
 License: CC0
