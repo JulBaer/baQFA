@@ -251,7 +251,7 @@ colonyzer.read<-function(path=".", libraries="LibraryDescriptions.txt", Growth="
     if(!"Barcode"%in%colnames(iman)) iman$Barcode=substr(iman$Filename,1,11)
     iman$Date.Time=substr(iman$Filename,13,31)
   }else{
-    if(!"Barcode"%in%colnames(iman)) iman$Barcode=substr(iman$Filename,1,15)
+    if(!"Barcode"%in%colnames(iman)) iman$Barcode=substring(iman$Filename, 1, regexpr("_", iman$Filename) -1)
     iman$Date.Time=substr(iman$Filename,nchar(iman$Barcode)+2,nchar(iman$Filename))
   }
 
