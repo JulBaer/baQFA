@@ -298,9 +298,14 @@ logdraw2<-function(row,col,resrow,tim,growth,gene,maxg,fitfunct,maxt=0,scaleT=1.
   points(tim,growth,col="red",cex=1.25*scaleT,pch=4,lwd=2,type=ptype,xlim=c(0,maxt),ylim=c(logmin,1.2*maxg))
   #and if the model plot is requested:
   if(curves){
+    if (Gmp==T) {
+      if("b"%in%names(resrow)) abline(v=resrow['b'],col="darkgreen")
+    }
+    
     #draw blue lines for model-free estimation of time to max growth from linear and log scale
     if("nr_t"%in%names(resrow)) abline(v=resrow['nr_t'],col="blue")
     if("maxslp_t"%in%names(resrow)) abline(v=resrow['maxslp_t'],col="blue",lty=2)
+    
 
     # Get the following model-free parameters. if not specfied, replace with NA as placeholder
     if ("maxslp" %in% names(resrow)) {
