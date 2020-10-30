@@ -1091,6 +1091,7 @@ guess2 <- function(tim, growth, inocguess, xybounds, minK = 0.025, TimeFormat = 
         # first the guesses for Glog and Slog model parameters define min g via as inocguess or if not specified by user via min growth value
         if (is.null(inocguess)) {
             G0g <- max(min(growth, na.rm = TRUE), 1e-07)
+            inocguess=G0g
         } else {
             G0g <- inocguess
         }
