@@ -756,11 +756,14 @@ makeBoundsQFA2 <- function(inocguess, d, minK = 0, fixG = FALSE, globalOpt = FAL
 
 
     # now K: defined by max Growth values
-    if (is.na(lowK))
-        lowK <- max(0.85 * max(d$Growth), minK)
-    if (is.na(upK))
-        upK <- 1.15 * (max(d$Growth))
-
+    if (is.na(lowK)) {
+      lowK <- max(c(0.85 * max(d$Growth, na.rm = T), minK))
+    }
+        
+    if (is.na(upK)) {
+      upK <- 1.15 * (max(d$Growth))
+    }
+        
     # then the g (Glog and Slog). Output lowg and upg are used as b for Gmp
     if (!Gmp) {
         # We often fix inoculation density, but users might prefer to infer it from growth curve vary it only by +- 10% of inocguess
