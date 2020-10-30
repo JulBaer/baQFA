@@ -675,7 +675,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
                 xybounds$v = c(1, 1)
             }
             inits = list(K = pars[1], r = 0.6, g = inocguess, v = 1)
-            newpars = de.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, inits = inits, initPop = TRUE, widenr = FALSE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm)
+            newpars = de.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, inits = inits, initPop = TRUE, widenr = FALSE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat = TimeFormat)
             if (newpars[5] <= pars[5])
                 pars = newpars
         }
@@ -958,7 +958,7 @@ data.fit2 <- function(tim, growth, inocguess, xybounds, inits = list(), logTrans
 
 
 #' Internal QFA function called by qfa.fit2. Do not call directly
-de.fit2 <- function(tim, growth, inocguess, xybounds, inits = list(), initPop = FALSE, widenr = F, logTransform = FALSE, mxit = 2000, Gmp = F, Nrm="Raw") {
+de.fit2 <- function(tim, growth, inocguess, xybounds, inits = list(), initPop = FALSE, widenr = F, logTransform = FALSE, mxit = 2000, Gmp = F, Nrm="Raw", TimeFormat = TimeFormat) {
     ### Function that fits model to a timecourse with genetic optimisation (DEoptim) algorithm
 
     # Fit to growth curve with differential evolution Get initial guess for parameters
