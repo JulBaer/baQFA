@@ -4,7 +4,9 @@
 \name{qfa.testdata}
 \alias{qfa.testdata}
 \title{A screen of three Staphylococcus aureus strains arranged in a grid}
-\format{data.frame}
+\format{
+data.frame
+}
 \usage{
 data(qfa.testdata)
 }

@@ -612,7 +612,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
 
 
     # define bounds for the optim functions here:
-    bounds = makeBoundsQFA2(iguess, d, minK, fixG, globalOpt, glog=glog, TimeFormat, Gmp = Gmp, lowK = lowK, upK = upK, lowr = lowr, upr = upr, lowg = lowg, upg = upg, lowv = lowv,
+    bounds = makeBoundsQFA2(iguess, d, minK, fixG, globalOpt, glog=glog, TimeFormat=TimeFormat, Gmp = Gmp, lowK = lowK, upK = upK, lowr = lowr, upr = upr, lowg = lowg, upg = upg, lowv = lowv,
         upv = upv, lowb = lowb, upb = upb, Nrm = Nrm)
 
     if (Gmp) {
@@ -629,7 +629,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
     # two options: globaloptim or not:
     if (globalOpt) {
         # actual model fit call:
-        pars = de.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat)
+        pars = de.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat=TimeFormat)
         # Check for high fraction of K at end of modelled experiment
         if (!Gmp) {
             GEnd = Glogist(pars[1], pars[2], pars[3], pars[4], max(d$Expt.Time))
@@ -638,7 +638,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
                 Kmin = max(0.95 * 1.5 * GEnd, minK)
                 Kmax = max(1.05 * 1.5 * GEnd, minK)
                 xybounds$K = c(Kmin, Kmax)
-                pars = de.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat = TimeFormat)
+                pars = de.fit2(d$Expt.Time, d$Growth, inocguess=inocguess, xybounds=xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat = TimeFormat)
             }
         }
 
@@ -1047,7 +1047,8 @@ de.fit2 <- function(tim, growth, inocguess, xybounds, inits = list(), initPop = 
     }
 
     # this is the optimization call
-    optsol = DEoptim::DEoptim(objf, lower = low, upper = up, DEoptim::DEoptim.control(trace = F, NP = NumParticles, initialpop = pop, itermax = mxit))
+    optsol = DEoptim::DEoptim(objf, lower = low, upper = up,
+              DEoptim::DEoptim.control(trace = F,NP = NumParticles, initialpop = pop, itermax = mxit))
 
     # a bit of name plumbing and finally output the data
     pars = abs(as.numeric(optsol$optim$bestmem))

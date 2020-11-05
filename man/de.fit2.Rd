@@ -15,7 +15,8 @@ de.fit2(
   logTransform = FALSE,
   mxit = 2000,
   Gmp = F,
-  Nrm = "Raw"
+  Nrm = "Raw",
+  TimeFormat = TimeFormat
 )
 }
 \description{
