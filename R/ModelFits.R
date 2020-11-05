@@ -992,6 +992,12 @@ de.fit2 <- function(tim, growth, inocguess, xybounds, inits = list(), initPop = 
 
         low = c(xybounds$K[1], xybounds$r[1], xybounds$g[1], xybounds$v[1])
         up = c(xybounds$K[2], xybounds$r[2], xybounds$g[2], xybounds$v[2])
+        
+        if (low[1] >= up[1]) low[1] = 0
+        if (low[1] >= up[1]) up[1] = low[1]+0.1
+        if (low[2] >= up[2]) low[2] = 0
+        if (low[3] >= up[3]) low[3] = 0
+        if (low[4] >= up[4]) low[4] = 0
 
 
     } else {
