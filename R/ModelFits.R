@@ -416,7 +416,7 @@ qfa.fit2 <- function(d,  Model = "Gmp", TimeFormat = "d", inocguess = NULL, fmt 
 }
 
 #' Internal QFA function called by qfa.fit2. Do not call directly
-colony.fit2 <- function(position, bcdata, inocguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, AUCLim = 5, STP = 10, glog = TRUE,
+colony.fit2 <- function(position, bcdata, inocguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, AUCLim = 5, STP = 10, glog = glog,
     modelFit = TRUE, checkSlow = TRUE, nrate = TRUE, TimeFormat = "d", Gmp = F, lowK = NA, upK = NA, lowr = NA, upr = NA, lowg = NA, upg = NA, lowv = NA, upv = NA, lowb = NA,
     upb = NA, Nrm = "Raw", ...) {
     # next step in calling model fit stuff
@@ -451,7 +451,7 @@ colony.fit2 <- function(position, bcdata, inocguess, fixG = TRUE, globalOpt = FA
 
 
 #' Internal QFA function called by qfa.fit2. Do not call directly
-makefits2 <- function(obsdat, inocguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, AUCLim = 5, STP = 10, glog = TRUE, modelFit = TRUE,
+makefits2 <- function(obsdat, inocguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, AUCLim = 5, STP = 10, glog = glog, modelFit = TRUE,
     checkSlow = TRUE, nrate = TRUE, TimeFormat = "d", Gmp = F, lowK = NA, upK = NA, lowr = NA, upr = NA, lowg = NA, upg = NA, lowv = NA, upv = NA, lowb = NA, upb = NA,
     Nrm = "Raw", ...) {
     # next call for model fit things
@@ -489,7 +489,7 @@ makefits2 <- function(obsdat, inocguess, fixG = TRUE, globalOpt = FALSE, detectT
 
 
 #' Internal QFA function called by qfa.fit2. Do not call directly
-growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, glog = TRUE, checkSlow = TRUE, TimeFormat = "d",
+growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectThresh = 0, minK = 0, logTransform = FALSE, glog = glog, checkSlow = TRUE, TimeFormat = "d",
     Gmp = F, lowK = NA, upK = NA, lowr = NA, upr = NA, lowg = NA, upg = NA, lowv = NA, upv = NA, lowb = NA, upb = NA, Nrm = "Raw", ...) {
 
     # next step in growth model calculation.
@@ -638,12 +638,18 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
                 Kmin = max(0.95 * 1.5 * GEnd, minK)
                 Kmax = max(1.05 * 1.5 * GEnd, minK)
                 xybounds$K = c(Kmin, Kmax)
+                if !(glog) {
+                  xybounds$v = c(1, 1)
+                }
                 pars = de.fit2(d$Expt.Time, d$Growth, inocguess=inocguess, xybounds=xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat = TimeFormat)
             }
         }
 
     } else {
         # use regular optim function actual model fit call:
+      if !(glog) {
+        xybounds$v = c(1, 1)
+      }
         pars = data.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, logTransform = logTransform, TimeFormat = TimeFormat, Gmp = Gmp, Nrm = Nrm)
         # Check for high fraction of K at end of modelled experiment
         if (!Gmp) {
@@ -712,7 +718,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
 
 
 #' Internal QFA function called by qfa.fit2. Do not call directly
-makeBoundsQFA2 <- function(inocguess, d, minK = 0, fixG = FALSE, globalOpt = FALSE, glog = TRUE, TimeFormat = "d", Gmp = F, lowK = NA, upK = NA, lowr = NA, upr = NA,
+makeBoundsQFA2 <- function(inocguess, d, minK = 0, fixG = FALSE, globalOpt = FALSE, glog = glog, TimeFormat = "d", Gmp = F, lowK = NA, upK = NA, lowr = NA, upr = NA,
     lowg = NA, upg = NA, lowv = NA, upv = NA, lowb = NA, upb = NA, Nrm = "Raw", ...) {
     # Find optimization bounds if not user-defined (values are not NA)
 
