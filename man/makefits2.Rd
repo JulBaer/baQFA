@@ -14,7 +14,7 @@ makefits2(
   logTransform = FALSE,
   AUCLim = 5,
   STP = 10,
-  glog = TRUE,
+  glog = glog,
   modelFit = TRUE,
   checkSlow = TRUE,
   nrate = TRUE,

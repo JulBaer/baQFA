@@ -10,7 +10,7 @@ makeBoundsQFA2(
   minK = 0,
   fixG = FALSE,
   globalOpt = FALSE,
-  glog = TRUE,
+  glog = glog,
   TimeFormat = "d",
   Gmp = F,
   lowK = NA,

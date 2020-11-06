@@ -12,7 +12,7 @@ growthcurve2(
   detectThresh = 0,
   minK = 0,
   logTransform = FALSE,
-  glog = TRUE,
+  glog = glog,
   checkSlow = TRUE,
   TimeFormat = "d",
   Gmp = F,

@@ -638,7 +638,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
                 Kmin = max(0.95 * 1.5 * GEnd, minK)
                 Kmax = max(1.05 * 1.5 * GEnd, minK)
                 xybounds$K = c(Kmin, Kmax)
-                if !(glog) {
+                if (!glog) {
                   xybounds$v = c(1, 1)
                 }
                 pars = de.fit2(d$Expt.Time, d$Growth, inocguess=inocguess, xybounds=xybounds, initPop = TRUE, logTransform = logTransform, Gmp = Gmp, Nrm = Nrm, TimeFormat = TimeFormat)
@@ -647,7 +647,7 @@ growthcurve2 <- function(obsdat, iguess, fixG = TRUE, globalOpt = FALSE, detectT
 
     } else {
         # use regular optim function actual model fit call:
-      if !(glog) {
+      if (!glog) {
         xybounds$v = c(1, 1)
       }
         pars = data.fit2(d$Expt.Time, d$Growth, inocguess, xybounds, logTransform = logTransform, TimeFormat = TimeFormat, Gmp = Gmp, Nrm = Nrm)
