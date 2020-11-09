@@ -739,7 +739,7 @@ makeBoundsQFA2 <- function(inocguess, d, minK = 0, fixG = FALSE, globalOpt = FAL
         # Glog/Slog
         if (TimeFormat == "h") {
             if (is.na(upr))
-                upr = 20
+                upr = 200
         } else {
             if (is.na(upr))
                 upr = 200
