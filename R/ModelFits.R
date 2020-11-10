@@ -62,6 +62,7 @@
 #' Indicates whether to allow g parameter to vary over a wide 1e-10*inocguess to 1e+10*inocguess
 #' or narrow range 0.9*inocguess to 1.1*inocguess during optimisation.
 #' fixG=TRUE corresponds to narrow constraints on g.
+#' fixG only has an effect if no manual boundaries for g have been set by the user.
 #' @param AUCLim Numerical AUC (nAUC) is calculated as the integral of an
 #' approximation of the growth curve between time 0 and AUCLim. If set to NA (default),
 #' AUClim will be set to the maximum time in the dataset.
