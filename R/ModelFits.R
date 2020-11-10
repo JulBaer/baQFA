@@ -254,28 +254,28 @@ qfa.fit2 <- function(d,  Model = "Gmp", TimeFormat = "d", inocguess = NULL, fmt 
         cl = NULL
     }
 
-    if ((!is.na(lowK) & !is.na(upK)) && upK<=lowK) {
+    if ((!is.na(lowK) & !is.na(upK)) && upK<lowK) {
       stop("The boundaries for K are incorrect. Please correct")
       return()
     }
 
-    if ((!is.na(lowr) & !is.na(upr)) && upr<=lowr) {
+    if ((!is.na(lowr) & !is.na(upr)) && upr<lowr) {
       stop("The boundaries for r are incorrect. Please correct")
       return()
     }
 
-    if ((!is.na(lowg) & !is.na(upg)) && upg<=lowg) {
-      stop("The boundaries for r are incorrect. Please correct")
+    if ((!is.na(lowg) & !is.na(upg)) && upg<lowg) {
+      stop("The boundaries for g are incorrect. Please correct")
       return()
     }
 
-    if ((!is.na(lowv) & !is.na(upv)) && upv<=lowv) {
-      stop("The boundaries for r are incorrect. Please correct")
+    if ((!is.na(lowv) & !is.na(upv)) && upv<lowv) {
+      stop("The boundaries for v are incorrect. Please correct")
       return()
     }
 
-    if ((!is.na(lowg) & !is.na(upb)) && upb<=lowb) {
-      stop("The boundaries for r are incorrect. Please correct")
+    if ((!is.na(lowg) & !is.na(upb)) && upb<lowb) {
+      stop("The boundaries for b are incorrect. Please correct")
       return()
     }
 
