@@ -153,7 +153,7 @@ if (is.na(maxt)) {
   }
 
   # Produce PDF. Modify some of the paramters depending on how many spots there are
-  colmin<-min(results$Col); rowmin<-min(results$Col)
+  colmin<-min(results$Col); rowmin<-min(results$Row)
   colmax<-max(results$Col); rowmax<-max(results$Row)
   #add .pdf if not done by user:
   if (substr(file, nchar(file)-4+1, nchar(file))!=".pdf") {
